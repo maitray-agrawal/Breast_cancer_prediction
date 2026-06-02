@@ -1,0 +1,28 @@
+# Cancer Health Prediction System - Python Dependencies
+# This file contains all required packages for the project
+
+# Core Data Science Libraries
+pandas==2.1.3
+numpy==1.24.3
+scikit-learn==1.3.2
+
+# Data Visualization
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# Web Framework
+Flask==3.0.0
+Flask-Cors==4.0.0
+
+# Model Serialization
+joblib==1.3.2
+
+# Utilities
+python-dotenv==1.0.0
+
+# Optional: Advanced visualizations (if needed)
+plotly==5.18.0
+
+# Development dependencies (optional)
+# jupyter==1.0.0
+# ipython==8.18.1
