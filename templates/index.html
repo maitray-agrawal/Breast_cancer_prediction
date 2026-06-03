@@ -7,11 +7,9 @@
     <title>Cancer Health Prediction System</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Root variables for consistent theming */
         :root {
             --primary-color: #2c3e50;
             --accent-color: #e74c3c;
@@ -22,7 +20,6 @@
             --border-radius: 10px;
         }
         
-        /* Body and general styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -31,17 +28,15 @@
             color: #333;
         }
         
-        /* Main container */
         .container {
             max-width: 1000px;
         }
         
-        /* Header section */
         .header {
             text-align: center;
             color: white;
-            margin-bottom: 40px;
-            padding: 30px 0;
+            margin-bottom: 30px;
+            padding: 20px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
@@ -53,22 +48,42 @@
             letter-spacing: 2px;
         }
         
-        .header p {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            opacity: 0.95;
+        /* Navigation Tabs Styling */
+        .nav-tabs {
+            border-bottom: none;
+            margin-bottom: 20px;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-tabs .nav-link {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .nav-tabs .nav-link.active {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
-        /* Main card */
         .card {
             border: none;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             border-radius: var(--border-radius);
             background: white;
-            animation: slideIn 0.5s ease-out;
         }
         
-        /* Card header styling */
         .card-header {
             background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
             color: white;
@@ -86,38 +101,10 @@
             gap: 10px;
         }
         
-        /* Card body */
         .card-body {
             padding: 40px;
         }
         
-        /* Form group styling */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        
-        /* Input styling */
-        .form-control {
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 10px 15px;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
-        }
-        
-        /* Feature input grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -147,7 +134,6 @@
             padding: 8px;
         }
         
-        /* Buttons */
         .btn {
             border: none;
             border-radius: 8px;
@@ -172,49 +158,35 @@
             color: white;
         }
         
-        .btn-predict:active {
-            transform: translateY(0);
-        }
-        
         .btn-reset {
             background: #95a5a6;
             color: white;
             margin-top: 10px;
         }
         
-        .btn-reset:hover {
-            background: #7f8c8d;
-            color: white;
-        }
-        
-        /* Results section */
         .results-section {
             display: none;
             margin-top: 30px;
             padding: 20px;
             border-radius: var(--border-radius);
-            animation: slideIn 0.5s ease-out;
         }
         
         .results-section.show {
             display: block;
         }
         
-        /* Benign result styling */
         .result-benign {
             background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             border: 2px solid var(--success-color);
             color: #155724;
         }
         
-        /* Malignant result styling */
         .result-malignant {
             background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
             border: 2px solid var(--accent-color);
             color: #721c24;
         }
         
-        /* Result title */
         .result-title {
             font-size: 1.8rem;
             font-weight: 700;
@@ -224,34 +196,21 @@
             gap: 10px;
         }
         
-        /* Confidence score */
         .confidence-score {
             font-size: 1.3rem;
             margin: 15px 0;
             font-weight: 600;
         }
         
-        /* Progress bar */
         .progress {
             height: 25px;
             border-radius: 10px;
             margin: 15px 0;
         }
         
-        .progress-bar {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+        .progress-bar-success { background-color: var(--success-color); }
+        .progress-bar-danger { background-color: var(--accent-color); }
         
-        .progress-bar-success {
-            background-color: var(--success-color);
-        }
-        
-        .progress-bar-danger {
-            background-color: var(--accent-color);
-        }
-        
-        /* Risk level indicator */
         .risk-level {
             display: inline-block;
             padding: 8px 16px;
@@ -259,18 +218,9 @@
             font-weight: 600;
             margin: 10px 0;
         }
+        .risk-low { background: var(--success-color); color: white; }
+        .risk-high { background: var(--accent-color); color: white; }
         
-        .risk-low {
-            background: var(--success-color);
-            color: white;
-        }
-        
-        .risk-high {
-            background: var(--accent-color);
-            color: white;
-        }
-        
-        /* Recommendation section */
         .recommendation {
             margin-top: 15px;
             padding: 12px;
@@ -279,42 +229,13 @@
             border-left: 4px solid currentColor;
         }
         
-        .recommendation-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
+        .spinner { display: none; text-align: center; margin: 20px 0; }
+        .spinner.show { display: block; }
+        .spinner-border { color: var(--accent-color); }
         
-        /* Loading spinner */
-        .spinner {
-            display: none;
-            text-align: center;
-            margin: 20px 0;
-        }
+        .alert { border-radius: var(--border-radius); border: none; padding: 15px 20px; margin-bottom: 20px; }
+        .alert-danger { background-color: #f8d7da; color: #721c24; border-left: 4px solid var(--accent-color); }
         
-        .spinner.show {
-            display: block;
-        }
-        
-        .spinner-border {
-            color: var(--accent-color);
-        }
-        
-        /* Error message */
-        .alert {
-            border-radius: var(--border-radius);
-            border: none;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            animation: slideIn 0.3s ease-out;
-        }
-        
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            border-left: 4px solid var(--accent-color);
-        }
-        
-        /* Instructions section */
         .instructions {
             background: #ecf0f1;
             padding: 20px;
@@ -323,22 +244,25 @@
             border-left: 4px solid var(--info-color);
         }
         
-        .instructions h4 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-weight: 600;
+        /* Analytics Tab Styles */
+        .analytics-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        .analytics-img:hover {
+            transform: scale(1.02);
         }
         
-        .instructions ol {
-            margin: 0;
-            padding-left: 20px;
+        /* History Logs Styles */
+        .history-section {
+            margin-top: 40px;
+            border-top: 2px solid #eee;
+            padding-top: 30px;
         }
-        
-        .instructions li {
-            margin-bottom: 8px;
-        }
-        
-        /* Footer */
+
         .footer {
             text-align: center;
             color: white;
@@ -346,375 +270,290 @@
             padding: 20px 0;
             font-size: 0.9rem;
         }
-        
-        /* Animations */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-                letter-spacing: 1px;
-            }
-            
-            .card-body {
-                padding: 25px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .result-title {
-                font-size: 1.4rem;
-            }
-        }
-        
-        /* Loading state */
-        .btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1><i class="fas fa-heartbeat"></i> Cancer Health Prediction</h1>
         <p>Intelligent Tumor Classification System</p>
-        <p style="font-size: 0.95rem; margin-top: 10px;">
-            Powered by Machine Learning • Breast Cancer Wisconsin Dataset
-        </p>
     </div>
     
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2><i class="fas fa-flask"></i> Prediction Form</h2>
-            </div>
-            
-            <div class="card-body">
-                <div class="instructions">
-                    <h4><i class="fas fa-info-circle"></i> How to Use</h4>
-                    <ol>
-                        <li>Enter all 30 feature values from the patient's medical analysis</li>
-                        <li>Click the "Predict" button to submit</li>
-                        <li>The system will analyze the data and provide a prediction</li>
-                        <li>Results show whether the tumor is likely Benign or Malignant</li>
-                        <li>Always consult with medical professionals for final diagnosis</li>
-                    </ol>
-                    <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #ccc; font-weight: 600;">
-                        <span style="color: var(--primary-color); margin-right: 10px;"><i class="fas fa-magic"></i> Testing Utilities:</span>
-                        <a href="#" onclick="fillSampleData(event, 'benign')" style="color: var(--success-color); text-decoration: none; margin-right: 15px;">
-                            [Fill Benign Sample]
-                        </a>
-                        <a href="#" onclick="fillSampleData(event, 'malignant')" style="color: var(--accent-color); text-decoration: none;">
-                            [Fill Malignant Sample]
-                        </a>
-                    </div>
-                </div>
-                
-                <div id="errorMessage" class="alert alert-danger" style="display: none;">
-                    <strong><i class="fas fa-exclamation-triangle"></i> Error:</strong>
-                    <span id="errorText"></span>
-                </div>
-                
-                <form id="predictionForm" onsubmit="submitForm(event)">
-                    <div class="features-grid" id="featuresContainer">
+        <!-- Interactive Navigation Tabs Component -->
+        <ul class="nav nav-tabs" id="projectTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="prediction-tab" data-bs-toggle="tab" data-bs-target="#predictionContent" type="button" role="tab">
+                    <i class="fas fa-calculator"></i> Diagnostic Predictor
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analyticsContent" type="button" role="tab">
+                    <i class="fas fa-chart-bar"></i> Model Training Insights (EDA)
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="projectTabsContent">
+            <!-- TAB 1: DIAGNOSTIC PREDICTOR CONTENT -->
+            <div class="tab-pane fade show active" id="predictionContent" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-flask"></i> Prediction Form</h2>
                     </div>
                     
-                    <div style="display: flex; gap: 10px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-predict" id="predictBtn">
-                            <i class="fas fa-brain"></i> Predict
-                        </button>
-                        <button type="reset" class="btn btn-reset">
-                            <i class="fas fa-redo"></i> Clear
-                        </button>
+                    <div class="card-body">
+                        <div class="instructions">
+                            <h4><i class="fas fa-info-circle"></i> How to Use</h4>
+                            <ol>
+                                <li>Enter all 30 feature values from the patient's medical analysis</li>
+                                <li>Click the "Predict" button to submit</li>
+                                <li>The system will analyze the data and provide a prediction</li>
+                            </ol>
+                            <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #ccc; font-weight: 600;">
+                                <span style="color: var(--primary-color); margin-right: 10px;"><i class="fas fa-magic"></i> Testing Utilities:</span>
+                                <a href="#" onclick="fillSampleData(event, 'benign')" style="color: var(--success-color); text-decoration: none; margin-right: 15px;">
+                                    [Fill Benign Sample]
+                                </a>
+                                <a href="#" onclick="fillSampleData(event, 'malignant')" style="color: var(--accent-color); text-decoration: none;">
+                                    [Fill Malignant Sample]
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div id="errorMessage" class="alert alert-danger" style="display: none;">
+                            <strong><i class="fas fa-exclamation-triangle"></i> Error:</strong> <span id="errorText"></span>
+                        </div>
+                        
+                        <form id="predictionForm" onsubmit="submitForm(event)">
+                            <div class="features-grid" id="featuresContainer"></div>
+                            
+                            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                                <button type="submit" class="btn btn-predict" id="predictBtn">
+                                    <i class="fas fa-brain"></i> Predict
+                                </button>
+                                <button type="reset" class="btn btn-reset">
+                                    <i class="fas fa-redo"></i> Clear
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="spinner" id="loadingSpinner">
+                            <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                            <p style="margin-top: 10px; color: var(--primary-color);">Analyzing tumor features...</p>
+                        </div>
+                        
+                        <div class="results-section" id="resultsSection"></div>
+
+                        <!-- NEW COMPONENT: Prediction History Logs System -->
+                        <div class="history-section">
+                            <h4 class="mb-3 text-secondary"><i class="fas fa-history"></i> Session Diagnostics Logs History</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped align-middle" id="historyTable">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Analysis Mode</th>
+                                            <th>Model Output Classification</th>
+                                            <th>Algorithmic Confidence</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="historyTableBody">
+                                        <tr id="emptyHistoryRow">
+                                            <td colspan="4" class="text-center text-muted py-3">No diagnostic computations evaluated yet during this server deployment instance.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                </form>
-                
-                <div class="spinner" id="loadingSpinner">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p style="margin-top: 10px; color: var(--primary-color);">
-                        Analyzing tumor features...
-                    </p>
                 </div>
-                
-                <div class="results-section" id="resultsSection">
+            </div>
+
+            <!-- TAB 2: EXPLORABLE DATA ANALYSIS (EDA) VIEWER -->
+            <div class="tab-pane fade" id="analyticsContent" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-chart-line"></i> Exploratory Data Engineering Charts</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">These analytical plots represent visualizations processed during original asset preprocessing configurations inside model workspace environments.</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <h5 class="text-primary"><i class="fas fa-chart-pie"></i> Baseline Target Variant Distributions</h5>
+                                <img src="/static/class_distribution.png" class="analytics-img" alt="Class Distribution Data Plot" onerror="this.src='https://placehold.co/500x350?text=Chart+Asset+Missing+in+Static+Folder'">
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <h5 class="text-primary"><i class="fas fa-bezier-curve"></i> Receiver Operating Characteristic (ROC Score)</h5>
+                                <img src="/static/roc_curves.png" class="analytics-img" alt="Model Evaluation Performance ROC Curve Chart" onerror="this.src='https://placehold.co/500x350?text=Chart+Asset+Missing+in+Static+Folder'">
+                            </div>
+                            <div class="col-12 text-center mt-3">
+                                <h5 class="text-primary"><i class="fas fa-th"></i> Multivariant Column Pearson Correlation Strength Heatmap Matrices</h5>
+                                <img src="/static/correlation_heatmap.png" class="analytics-img" alt="Dataset Feature Columns Heatmap Matrix" onerror="this.src='https://placehold.co/1000x500?text=Chart+Asset+Missing+in+Static+Folder'">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     
     <div class="footer">
-        <p>
-            <i class="fas fa-copyright"></i> 2026 Cancer Health Prediction System • 
-            Built for Educational & Research Purposes
-        </p>
-        <p style="font-size: 0.85rem; margin-top: 10px;">
-            Disclaimer: This system is for educational purposes only. 
-            Always consult qualified medical professionals for diagnosis.
-        </p>
+        <p><i class="fas fa-copyright"></i> 2026 Cancer Health Prediction System • Built for Educational & Research Purposes</p>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        /**
-         * Initialize the form by loading feature names from the server
-         */
+        let selectedTestMode = "Manual Input Form Entries";
+
         async function initializeForm() {
             try {
-                // Fetch feature list from API
                 const response = await fetch('/api/features');
                 const data = await response.json();
-                
-                if (data.success) {
-                    populateFeatures(data.features);
-                } else {
-                    showError('Failed to load features: ' + data.error);
-                }
-            } catch (error) {
-                showError('Error initializing form: ' + error.message);
-            }
+                if (data.success) { populateFeatures(data.features); } 
+                else { showError('Failed to load features: ' + data.error); }
+            } catch (error) { showError('Error initializing form: ' + error.message); }
         }
         
-        /**
-         * Populate the form with feature input fields
-         * @param {Array} features - List of feature names
-         */
         function populateFeatures(features) {
             const container = document.getElementById('featuresContainer');
             container.innerHTML = '';
-            
-            // Create input field for each feature
             features.forEach((feature, index) => {
                 const featureItem = document.createElement('div');
                 featureItem.className = 'feature-item';
                 featureItem.innerHTML = `
                     <label for="feature${index}">${index + 1}. ${feature}</label>
-                    <input 
-                        type="number" 
-                        id="feature${index}" 
-                        name="feature${index}" 
-                        step="any"
-                        required
-                        placeholder="Enter value"
-                    >
+                    <input type="number" id="feature${index}" name="feature${index}" step="any" required placeholder="Enter value">
                 `;
                 container.appendChild(featureItem);
             });
         }
         
-        /**
-         * Show error message
-         * @param {string} message - Error message to display
-         */
         function showError(message) {
             const errorDiv = document.getElementById('errorMessage');
-            const errorText = document.getElementById('errorText');
-            errorText.textContent = message;
+            document.getElementById('errorText').textContent = message;
             errorDiv.style.display = 'block';
         }
         
-        /**
-         * Hide error message
-         */
-        function hideError() {
-            const errorDiv = document.getElementById('errorMessage');
-            errorDiv.style.display = 'none';
-        }
-        
-        /**
-         * Show loading spinner
-         */
+        function hideError() { document.getElementById('errorMessage').style.display = 'none'; }
         function showLoading() {
             document.getElementById('loadingSpinner').classList.add('show');
             document.getElementById('resultsSection').classList.remove('show');
         }
+        function hideLoading() { document.getElementById('loadingSpinner').classList.remove('show'); }
         
-        /**
-         * Hide loading spinner
-         */
-        function hideLoading() {
-            document.getElementById('loadingSpinner').classList.remove('show');
-        }
-        
-        /**
-         * Display prediction results
-         * @param {Object} data - Prediction data from server
-         */
         function displayResults(data) {
             const resultsSection = document.getElementById('resultsSection');
-            
-            // Determine result styling based on prediction
             const isBenign = data.prediction === 'BENIGN';
             const resultClass = isBenign ? 'result-benign' : 'result-malignant';
             const icon = isBenign ? 'fa-smile' : 'fa-exclamation-circle';
             const progressClass = isBenign ? 'progress-bar-success' : 'progress-bar-danger';
             
-            // Create results HTML
-            const resultsHTML = `
+            resultsSection.innerHTML = `
                 <div class="results-section show ${resultClass}">
-                    <div class="result-title">
-                        <i class="fas ${icon}"></i>
-                        Prediction: ${data.prediction}
-                    </div>
-                    
-                    <div class="confidence-score">
-                        Confidence Score: ${data.confidence.toFixed(4)} (${data.confidence_percentage}%)
-                    </div>
-                    
+                    <div class="result-title"><i class="fas ${icon}"></i> Prediction: ${data.prediction}</div>
+                    <div class="confidence-score">Confidence Score: ${data.confidence.toFixed(4)} (${data.confidence_percentage}%)</div>
                     <div class="progress">
-                        <div class="progress-bar ${progressClass}" 
-                             role="progressbar" 
-                             style="width: ${data.confidence_percentage}%"
-                             aria-valuenow="${data.confidence_percentage}" 
-                             aria-valuemin="0" 
-                             aria-valuemax="100">
-                            ${data.confidence_percentage}%
-                        </div>
+                        <div class="progress-bar ${progressClass}" role="progressbar" style="width: ${data.confidence_percentage}%">${data.confidence_percentage}%</div>
                     </div>
-                    
-                    <div>
-                        <strong>Risk Level:</strong>
-                        <span class="risk-level ${isBenign ? 'risk-low' : 'risk-high'}">
-                            ${data.risk_level}
-                        </span>
-                    </div>
-                    
+                    <div><strong>Risk Level:</strong> <span class="risk-level ${isBenign ? 'risk-low' : 'risk-high'}">${data.risk_level}</span></div>
                     <div class="recommendation">
-                        <div class="recommendation-title">
-                            <i class="fas fa-stethoscope"></i> Recommendation
-                        </div>
+                        <div class="recommendation-title"><i class="fas fa-stethoscope"></i> Recommendation</div>
                         <p>${data.recommendation}</p>
-                    </div>
-                    
-                    <div style="margin-top: 20px; font-size: 0.9rem; font-style: italic;">
-                        <i class="fas fa-info-circle"></i>
-                        <strong>Disclaimer:</strong> This prediction is based on machine learning 
-                        analysis. Always consult with qualified medical professionals for 
-                        accurate diagnosis and treatment.
                     </div>
                 </div>
             `;
-            
-            resultsSection.innerHTML = resultsHTML;
             resultsSection.classList.add('show');
+
+            // Append record to local dashboard logs history matrix
+            addLogRecordToTable(data.prediction, data.confidence_percentage);
         }
 
-        /**
-         * Automatically fill all 30 inputs with sample datasets for quick testing
-         * Enhanced with dynamic +/- 5% jitter variance simulation loop logic
-         */
         function fillSampleData(event, type) {
-            if (event) event.preventDefault(); // Stop page jumping
+            if (event) event.preventDefault();
             
+            selectedTestMode = (type === 'malignant') ? "Injected Malignant Profile Profile Sample" : "Injected Benign Profile Profile Sample";
+
             const benignSample = [
-                13.54, 14.36, 87.46, 566.3, 0.09779,
-                0.08129, 0.06664, 0.04781, 0.1885, 0.05766,
-                0.2699, 0.7886, 2.058, 23.56, 0.008462,
-                0.0146, 0.02387, 0.01315, 0.0198, 0.0023,
-                15.11, 19.26, 99.7, 711.2, 0.144,
-                0.1773, 0.239, 0.1288, 0.2977, 0.07259
+                13.54, 14.36, 87.46, 566.3, 0.09779, 0.08129, 0.06664, 0.04781, 0.1885, 0.05766,
+                0.2699, 0.7886, 2.058, 23.56, 0.008462, 0.0146, 0.02387, 0.01315, 0.0198, 0.0023,
+                15.11, 19.26, 99.7, 711.2, 0.144, 0.1773, 0.239, 0.1288, 0.2977, 0.07259
             ];
-
             const malignantSample = [
-                17.99, 10.38, 122.8, 1001, 0.1184,
-                0.2776, 0.3001, 0.1471, 0.2419, 0.07871,
-                1.095, 0.9053, 8.589, 153.4, 0.006399,
-                0.04904, 0.05373, 0.01587, 0.03003, 0.006193,
-                25.38, 17.33, 184.6, 2019, 0.1622,
-                0.6656, 0.7119, 0.2654, 0.4601, 0.1189
+                17.99, 10.38, 122.8, 1001, 0.1184, 0.2776, 0.3001, 0.1471, 0.2419, 0.07871,
+                1.095, 0.9053, 8.589, 153.4, 0.006399, 0.04904, 0.05373, 0.01587, 0.03003, 0.006193,
+                25.38, 17.33, 184.6, 2019, 0.1622, 0.6656, 0.7119, 0.2654, 0.4601, 0.1189
             ];
 
-            // Choose dataset variant based on click selection
             const baseSample = (type === 'malignant') ? malignantSample : benignSample;
 
-            // Sequentially loop and assign values with a slight dynamic fluctuation
             baseSample.forEach((baseVal, index) => {
                 const inputElement = document.getElementById(`feature${index}`);
                 if (inputElement) {
-                    // Generates a random multiplier variant between 0.95 and 1.05 (+/- 5% variance)
                     const randomJitter = 0.95 + (Math.random() * 0.10);
                     let alteredValue = baseVal * randomJitter;
-                    
-                    // Maintain proportional float rendering lengths based on input numeric scales
-                    if (baseVal < 1) {
-                        alteredValue = parseFloat(alteredValue.toFixed(5));
-                    } else {
-                        alteredValue = parseFloat(alteredValue.toFixed(2));
-                    }
-                    
+                    alteredValue = baseVal < 1 ? parseFloat(alteredValue.toFixed(5)) : parseFloat(alteredValue.toFixed(2));
                     inputElement.value = alteredValue;
                 }
             });
             
-            // Clean interface slate
             hideError();
             document.getElementById('resultsSection').classList.remove('show');
         }
-        
+
         /**
-         * Submit the prediction form
-         * @param {Event} event - Form submit event
+         * Appends calculation record metrics dynamically inside historical logging node
          */
+        function addLogRecordToTable(prediction, confidence) {
+            const tableBody = document.getElementById('historyTableBody');
+            const emptyRow = document.getElementById('emptyHistoryRow');
+            if (emptyRow) emptyRow.remove();
+
+            const timestamp = new Date().toLocaleTimeString();
+            const badgeClass = (prediction === 'BENIGN') ? 'bg-success' : 'bg-danger';
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><strong>${timestamp}</strong></td>
+                <td class="text-muted">${selectedTestMode}</td>
+                <td><span class="badge ${badgeClass}" style="font-size:0.9rem;">${prediction}</span></td>
+                <td><strong>${confidence}%</strong></td>
+            `;
+            
+            // Insert log at the top of the history list
+            tableBody.insertBefore(newRow, tableBody.firstChild);
+            selectedTestMode = "Manual Input Form Entries"; // Reset mode tracking context
+        }
+        
         async function submitForm(event) {
             event.preventDefault();
             hideError();
-            
             try {
                 showLoading();
-                
-                // Collect form data
                 const formData = new FormData(document.getElementById('predictionForm'));
                 const features = [];
-                
-                // Extract feature values in order
                 for (let i = 0; i < 30; i++) {
                     const value = formData.get(`feature${i}`);
-                    if (value === null || value.trim() === '') {
-                        throw new Error(`Feature ${i + 1} is required`);
-                    }
+                    if (value === null || value.trim() === '') throw new Error(`Feature ${i + 1} is required`);
                     features.push(parseFloat(value));
                 }
                 
-                // Disable submit button during request
                 const predictBtn = document.getElementById('predictBtn');
                 predictBtn.disabled = true;
                 
-                // Send prediction request
                 const response = await fetch('/predict', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ features: features })
                 });
                 
-                // Re-enable submit button
                 predictBtn.disabled = false;
-                
-                // Parse response
                 const data = await response.json();
-                
                 hideLoading();
                 
-                if (data.success) {
-                    displayResults(data);
-                } else {
-                    showError(data.error || 'Prediction failed');
-                }
+                if (data.success) { displayResults(data); } 
+                else { showError(data.error || 'Prediction failed'); }
             } catch (error) {
                 hideLoading();
                 showError(error.message || 'An error occurred during prediction');
@@ -722,7 +561,6 @@
             }
         }
         
-        // Initialize form when page loads
         document.addEventListener('DOMContentLoaded', initializeForm);
     </script>
 </body>
